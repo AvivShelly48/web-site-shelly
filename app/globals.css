@@ -3,39 +3,128 @@
 @tailwind utilities;
 
 :root {
-  --velaro-black: #080808;
-  --velaro-charcoal: #111111;
+  --velaro-black: #060606;
+  --velaro-ink: #0a0a0a;
+  --velaro-charcoal: #131210;
   --velaro-stone: #8b8580;
   --velaro-bronze: #b49a75;
-  --velaro-cream: #e8e0d2;
+  --velaro-bronze-bright: #d8b98c;
+  --velaro-bronze-deep: #7c6648;
+  --velaro-cream: #ece4d6;
+  --velaro-line: rgba(236, 228, 214, 0.1);
+  --ease-cine: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html { scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+
+html {
+  /* Lenis drives scrolling; native smooth-scroll would fight it */
+  scroll-behavior: auto;
+  background: var(--velaro-black);
+}
+
 body {
   margin: 0;
   background: var(--velaro-black);
   color: var(--velaro-cream);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* clip (not hidden) so it doesn't create a scroll container that breaks position: sticky */
+  overflow-x: clip;
 }
 
-.brand-shell {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #050505 0%, #101010 48%, #1a1714 100%);
-}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
 
-.velaro-logo {
+/* ---- Type ---- */
+.font-display { font-family: var(--font-display), 'Times New Roman', serif; }
+
+.wordmark {
+  font-family: var(--font-display), serif;
+  font-weight: 500;
   letter-spacing: 0.42em;
-  font-size: clamp(2.3rem, 7vw, 7.6rem);
-  font-weight: 300;
+  text-indent: 0.42em;
+  background: linear-gradient(176deg, var(--velaro-bronze-bright) 0%, var(--velaro-bronze) 42%, var(--velaro-bronze-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.velaro-overline {
-  letter-spacing: 0.34em;
+.overline {
+  font-family: var(--font-sans), sans-serif;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
+  font-size: 0.68rem;
+  font-weight: 400;
   color: var(--velaro-bronze);
 }
 
+.display-xl {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  font-size: clamp(2.6rem, 6.6vw, 6.4rem);
+}
+
+.display-lg {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.005em;
+  font-size: clamp(2.1rem, 4.6vw, 4.2rem);
+}
+
+.lede {
+  font-weight: 300;
+  line-height: 1.6;
+  color: #cabfae;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+}
+
+.bronze { color: var(--velaro-bronze); }
+.bronze-bright { color: var(--velaro-bronze-bright); }
+
+/* ---- Surfaces ---- */
 .panel {
-  border: 1px solid rgba(232, 224, 210, 0.12);
-  background: rgba(255,255,255,0.035);
+  border: 1px solid var(--velaro-line);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012));
+  backdrop-filter: blur(2px);
+}
+
+.hairline { background: var(--velaro-line); }
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.vignette::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 30%, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* media that fully covers its frame */
+.cover { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+::selection { background: var(--velaro-bronze); color: #0a0a0a; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #060606; }
+::-webkit-scrollbar-thumb { background: #2a2620; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--velaro-bronze-deep); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
