@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --velaro-black: #080808;
+  --velaro-charcoal: #111111;
+  --velaro-stone: #8b8580;
+  --velaro-bronze: #b49a75;
+  --velaro-cream: #e8e0d2;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--velaro-black);
+  color: var(--velaro-cream);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.brand-shell {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #050505 0%, #101010 48%, #1a1714 100%);
+}
+
+.velaro-logo {
+  letter-spacing: 0.42em;
+  font-size: clamp(2.3rem, 7vw, 7.6rem);
+  font-weight: 300;
+}
+
+.velaro-overline {
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--velaro-bronze);
+}
+
+.panel {
+  border: 1px solid rgba(232, 224, 210, 0.12);
+  background: rgba(255,255,255,0.035);
+}
