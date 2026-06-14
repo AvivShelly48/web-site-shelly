@@ -175,70 +175,119 @@ export default function TasksPage() {
         ))}
       </div>
 
-      <div className="app-card overflow-hidden">
-        {loading ? (
-          <p className="p-5 text-sm text-[var(--muted)]">טוען...</p>
-        ) : filtered.length === 0 ? (
-          <p className="p-5 text-sm text-[var(--muted)]">אין משימות להצגה.</p>
-        ) : (
-          <table className="w-full text-sm">
-            <thead className="bg-[var(--bg)] text-[var(--muted)] text-xs">
-              <tr>
-                <th className="text-right px-4 py-3">משימה</th>
-                <th className="text-right px-4 py-3">תדירות</th>
-                <th className="text-right px-4 py-3">יעד</th>
-                <th className="text-right px-4 py-3">עובד</th>
-                <th className="text-right px-4 py-3">סטטוס</th>
-                <th className="px-4 py-3"></th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[var(--border)]">
-              {filtered.map((task) => (
-                <tr key={task.id}>
-                  <td className="px-4 py-3">
+      {loading ? (
+        <p className="text-sm text-[var(--muted)]">טוען...</p>
+      ) : filtered.length === 0 ? (
+        <p className="text-sm text-[var(--muted)]">אין משימות להצגה.</p>
+      ) : (
+        <>
+          {/* mobile: card list */}
+          <div className="md:hidden space-y-3">
+            {filtered.map((task) => (
+              <div key={task.id} className="app-card p-4 space-y-3">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
                     <p className="font-medium">{task.title}</p>
                     {task.description && <p className="text-xs text-[var(--muted)] mt-0.5">{task.description}</p>}
-                  </td>
-                  <td className="px-4 py-3">{FREQUENCY_LABELS[task.frequency]}</td>
-                  <td className="px-4 py-3">{task.dueDate}</td>
-                  <td className="px-4 py-3">
-                    <select
-                      value={task.assigneeId ?? ''}
-                      onChange={(e) => updateAssignee(task.id, e.target.value)}
-                      className="border border-[var(--border)] rounded-lg px-2 py-1 text-xs"
-                    >
-                      <option value="">לא משויך</option>
-                      {employees.map((e) => (
-                        <option key={e.id} value={e.id}>
-                          {e.name}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                  <td className="px-4 py-3">
-                    <select
-                      value={task.status}
-                      onChange={(e) => updateStatus(task.id, e.target.value as TaskStatus)}
-                      className="border border-[var(--border)] rounded-lg px-2 py-1 text-xs"
-                    >
-                      {STATUS_OPTIONS.map((s) => (
-                        <option key={s} value={s}>
-                          {STATUS_LABELS[s]}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                  <td className="px-4 py-3 text-left">
-                    <button onClick={() => deleteTask(task.id)} className="text-gray-400 hover:text-red-500">
-                      <Trash2 size={16} />
-                    </button>
-                  </td>
+                  </div>
+                  <button onClick={() => deleteTask(task.id)} className="text-gray-400 hover:text-red-500 shrink-0">
+                    <Trash2 size={16} />
+                  </button>
+                </div>
+                <div className="flex items-center justify-between text-xs text-[var(--muted)]">
+                  <span>{FREQUENCY_LABELS[task.frequency]}</span>
+                  <span>יעד: {task.dueDate}</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <select
+                    value={task.assigneeId ?? ''}
+                    onChange={(e) => updateAssignee(task.id, e.target.value)}
+                    className="w-full border border-[var(--border)] rounded-lg px-2 py-2 text-xs"
+                  >
+                    <option value="">לא משויך</option>
+                    {employees.map((e) => (
+                      <option key={e.id} value={e.id}>
+                        {e.name}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    value={task.status}
+                    onChange={(e) => updateStatus(task.id, e.target.value as TaskStatus)}
+                    className="w-full border border-[var(--border)] rounded-lg px-2 py-2 text-xs"
+                  >
+                    {STATUS_OPTIONS.map((s) => (
+                      <option key={s} value={s}>
+                        {STATUS_LABELS[s]}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* desktop: table */}
+          <div className="hidden md:block app-card overflow-hidden">
+            <table className="w-full text-sm">
+              <thead className="bg-[var(--bg)] text-[var(--muted)] text-xs">
+                <tr>
+                  <th className="text-right px-4 py-3">משימה</th>
+                  <th className="text-right px-4 py-3">תדירות</th>
+                  <th className="text-right px-4 py-3">יעד</th>
+                  <th className="text-right px-4 py-3">עובד</th>
+                  <th className="text-right px-4 py-3">סטטוס</th>
+                  <th className="px-4 py-3"></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
+              </thead>
+              <tbody className="divide-y divide-[var(--border)]">
+                {filtered.map((task) => (
+                  <tr key={task.id}>
+                    <td className="px-4 py-3">
+                      <p className="font-medium">{task.title}</p>
+                      {task.description && <p className="text-xs text-[var(--muted)] mt-0.5">{task.description}</p>}
+                    </td>
+                    <td className="px-4 py-3">{FREQUENCY_LABELS[task.frequency]}</td>
+                    <td className="px-4 py-3">{task.dueDate}</td>
+                    <td className="px-4 py-3">
+                      <select
+                        value={task.assigneeId ?? ''}
+                        onChange={(e) => updateAssignee(task.id, e.target.value)}
+                        className="border border-[var(--border)] rounded-lg px-2 py-1 text-xs"
+                      >
+                        <option value="">לא משויך</option>
+                        {employees.map((e) => (
+                          <option key={e.id} value={e.id}>
+                            {e.name}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td className="px-4 py-3">
+                      <select
+                        value={task.status}
+                        onChange={(e) => updateStatus(task.id, e.target.value as TaskStatus)}
+                        className="border border-[var(--border)] rounded-lg px-2 py-1 text-xs"
+                      >
+                        {STATUS_OPTIONS.map((s) => (
+                          <option key={s} value={s}>
+                            {STATUS_LABELS[s]}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td className="px-4 py-3 text-left">
+                      <button onClick={() => deleteTask(task.id)} className="text-gray-400 hover:text-red-500">
+                        <Trash2 size={16} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -96,38 +96,57 @@ export default function EmployeesPage() {
         </form>
       )}
 
-      <div className="app-card overflow-hidden">
-        {loading ? (
-          <p className="p-5 text-sm text-[var(--muted)]">טוען...</p>
-        ) : employees.length === 0 ? (
-          <p className="p-5 text-sm text-[var(--muted)]">אין עובדים מוגדרים.</p>
-        ) : (
-          <table className="w-full text-sm">
-            <thead className="bg-[var(--bg)] text-[var(--muted)] text-xs">
-              <tr>
-                <th className="text-right px-4 py-3">שם</th>
-                <th className="text-right px-4 py-3">טלפון</th>
-                <th className="text-right px-4 py-3">אימייל</th>
-                <th className="px-4 py-3"></th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[var(--border)]">
-              {employees.map((emp) => (
-                <tr key={emp.id}>
-                  <td className="px-4 py-3 font-medium">{emp.name}</td>
-                  <td className="px-4 py-3">{emp.phone}</td>
-                  <td className="px-4 py-3">{emp.email}</td>
-                  <td className="px-4 py-3 text-left">
-                    <button onClick={() => deleteEmployee(emp.id)} className="text-gray-400 hover:text-red-500">
-                      <Trash2 size={16} />
-                    </button>
-                  </td>
+      {loading ? (
+        <p className="text-sm text-[var(--muted)]">טוען...</p>
+      ) : employees.length === 0 ? (
+        <p className="text-sm text-[var(--muted)]">אין עובדים מוגדרים.</p>
+      ) : (
+        <>
+          {/* mobile: card list */}
+          <div className="md:hidden space-y-3">
+            {employees.map((emp) => (
+              <div key={emp.id} className="app-card p-4 flex items-start justify-between gap-3">
+                <div>
+                  <p className="font-medium">{emp.name}</p>
+                  <p className="text-xs text-[var(--muted)] mt-1">{emp.phone}</p>
+                  <p className="text-xs text-[var(--muted)]">{emp.email}</p>
+                </div>
+                <button onClick={() => deleteEmployee(emp.id)} className="text-gray-400 hover:text-red-500 shrink-0">
+                  <Trash2 size={16} />
+                </button>
+              </div>
+            ))}
+          </div>
+
+          {/* desktop: table */}
+          <div className="hidden md:block app-card overflow-hidden">
+            <table className="w-full text-sm">
+              <thead className="bg-[var(--bg)] text-[var(--muted)] text-xs">
+                <tr>
+                  <th className="text-right px-4 py-3">שם</th>
+                  <th className="text-right px-4 py-3">טלפון</th>
+                  <th className="text-right px-4 py-3">אימייל</th>
+                  <th className="px-4 py-3"></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
+              </thead>
+              <tbody className="divide-y divide-[var(--border)]">
+                {employees.map((emp) => (
+                  <tr key={emp.id}>
+                    <td className="px-4 py-3 font-medium">{emp.name}</td>
+                    <td className="px-4 py-3">{emp.phone}</td>
+                    <td className="px-4 py-3">{emp.email}</td>
+                    <td className="px-4 py-3 text-left">
+                      <button onClick={() => deleteEmployee(emp.id)} className="text-gray-400 hover:text-red-500">
+                        <Trash2 size={16} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   );
 }
