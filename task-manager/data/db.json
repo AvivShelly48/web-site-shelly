@@ -1,0 +1,28 @@
+{
+  "employees": [
+    { "id": "e1", "name": "דנה כהן", "phone": "972501234567", "email": "dana@example.com" },
+    { "id": "e2", "name": "יוסי לוי", "phone": "972502345678", "email": "yossi@example.com" }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "title": "בדיקת תיבת דואר ומענה לפניות",
+      "description": "מעקב אחר פניות לקוחות חדשות וטיפול ראשוני",
+      "frequency": "daily",
+      "assigneeId": "e1",
+      "status": "in_progress",
+      "dueDate": "2026-06-14",
+      "createdAt": "2026-06-01T08:00:00.000Z"
+    },
+    {
+      "id": "t2",
+      "title": "סגירת חודש - דוח הוצאות",
+      "description": "איסוף קבלות והגשת דוח הוצאות חודשי להנהלת חשבונות",
+      "frequency": "monthly",
+      "assigneeId": "e2",
+      "status": "pending",
+      "dueDate": "2026-06-30",
+      "createdAt": "2026-06-01T08:00:00.000Z"
+    }
+  ]
+}
