@@ -23,6 +23,16 @@
       "status": "pending",
       "dueDate": "2026-06-30",
       "createdAt": "2026-06-01T08:00:00.000Z"
+    },
+    {
+      "id": "t3",
+      "title": "ישיבת צוות שבועית וסיכום משימות",
+      "description": "תיאום ציפיות שבועי, חלוקת משימות ועדכון סטטוסים",
+      "frequency": "weekly",
+      "assigneeId": "e1",
+      "status": "pending",
+      "dueDate": "2026-06-18",
+      "createdAt": "2026-06-01T08:00:00.000Z"
     }
   ]
 }

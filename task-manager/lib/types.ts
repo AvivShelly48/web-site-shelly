@@ -1,4 +1,4 @@
-export type TaskFrequency = 'daily' | 'monthly';
+export type TaskFrequency = 'daily' | 'weekly' | 'monthly';
 export type TaskStatus = 'pending' | 'in_progress' | 'done';
 
 export interface Employee {
@@ -32,5 +32,6 @@ export const STATUS_LABELS: Record<TaskStatus, string> = {
 
 export const FREQUENCY_LABELS: Record<TaskFrequency, string> = {
   daily: 'יומית',
+  weekly: 'שבועית',
   monthly: 'חודשית',
 };

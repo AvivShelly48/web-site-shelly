@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { CalendarCheck, LayoutDashboard, Send, Users } from 'lucide-react';
+import { BellRing, CalendarCheck, LayoutDashboard, Send, Users } from 'lucide-react';
 
 const links = [
   { href: '/', label: 'דשבורד', icon: LayoutDashboard },
   { href: '/tasks', label: 'משימות', icon: CalendarCheck },
+  { href: '/reminders', label: 'תזכורות', icon: BellRing },
   { href: '/employees', label: 'עובדים', icon: Users },
   { href: '/reports', label: 'דוחות', icon: Send },
 ];

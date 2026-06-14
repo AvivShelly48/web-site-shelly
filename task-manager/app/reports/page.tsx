@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Mail, MessageCircle } from 'lucide-react';
 import type { Employee } from '@/lib/types';
 
-type Frequency = 'all' | 'daily' | 'monthly';
+type Frequency = 'all' | 'daily' | 'weekly' | 'monthly';
 
 interface WhatsappLink {
   employeeId: string;
@@ -76,6 +76,7 @@ export default function ReportsPage() {
           >
             <option value="all">כל המשימות</option>
             <option value="daily">משימות יומיות</option>
+            <option value="weekly">משימות שבועיות</option>
             <option value="monthly">משימות חודשיות</option>
           </select>
         </div>

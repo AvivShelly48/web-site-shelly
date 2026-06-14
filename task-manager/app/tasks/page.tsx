@@ -121,6 +121,7 @@ export default function TasksPage() {
               className="w-full border border-[var(--border)] rounded-lg px-3 py-2 text-sm"
             >
               <option value="daily">יומית</option>
+              <option value="weekly">שבועית</option>
               <option value="monthly">חודשית</option>
             </select>
           </div>
@@ -161,7 +162,7 @@ export default function TasksPage() {
       )}
 
       <div className="flex gap-2">
-        {(['all', 'daily', 'monthly'] as Filter[]).map((f) => (
+        {(['all', 'daily', 'weekly', 'monthly'] as Filter[]).map((f) => (
           <button
             key={f}
             onClick={() => setFilter(f)}
