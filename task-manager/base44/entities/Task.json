@@ -1,0 +1,46 @@
+{
+  "name": "Task",
+  "type": "object",
+  "description": "משימה המשויכת לפרויקט, לשלב ולאיש קשר אחראי",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "כותרת המשימה"
+    },
+    "description": {
+      "type": "string",
+      "description": "תיאור חופשי של המשימה"
+    },
+    "project_id": {
+      "type": "string",
+      "description": "מזהה הפרויקט המשויך (Project.id)"
+    },
+    "stage": {
+      "type": "string",
+      "enum": ["licensing", "construction", "form4", "occupancy"],
+      "description": "שלב הפרויקט: רישוי / בנייה / טופס 4 / אכלוס"
+    },
+    "contact_id": {
+      "type": "string",
+      "description": "מזהה איש הקשר האחראי / מקבל ההתראות (Contact.id)"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": ["daily", "weekly", "monthly"],
+      "default": "daily",
+      "description": "תדירות: יומית / שבועית / חודשית"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "תאריך יעד (YYYY-MM-DD)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "in_progress", "done"],
+      "default": "pending",
+      "description": "סטטוס: ממתינה / בתהליך / הושלמה"
+    }
+  },
+  "required": ["title"]
+}
