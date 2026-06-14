@@ -84,7 +84,7 @@ export default function TasksPage() {
         </div>
         <button
           onClick={() => setShowForm((v) => !v)}
-          className="flex items-center gap-1.5 bg-[var(--brand)] text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90"
+          className="flex items-center gap-1.5 bg-[var(--brand)] text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:opacity-90"
         >
           <Plus size={16} />
           משימה חדשה
@@ -92,7 +92,7 @@ export default function TasksPage() {
       </div>
 
       {showForm && (
-        <form onSubmit={addTask} className="bg-white rounded-xl border border-[var(--border)] p-5 grid md:grid-cols-2 gap-4">
+        <form onSubmit={addTask} className="app-card p-5 grid md:grid-cols-2 gap-4">
           <div className="md:col-span-2">
             <label className="block text-sm font-medium mb-1">כותרת המשימה</label>
             <input
@@ -154,7 +154,7 @@ export default function TasksPage() {
           </div>
 
           <div className="md:col-span-2 flex justify-end">
-            <button type="submit" className="bg-[var(--brand)] text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90">
+            <button type="submit" className="bg-[var(--brand)] text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:opacity-90">
               הוספת משימה
             </button>
           </div>
@@ -166,8 +166,8 @@ export default function TasksPage() {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium ${
-              filter === f ? 'bg-[var(--brand)] text-white' : 'bg-white border border-[var(--border)] text-[var(--muted)]'
+            className={`px-3.5 py-2 rounded-xl text-sm font-medium ${
+              filter === f ? 'bg-[var(--brand)] text-white' : 'bg-white text-[var(--muted)] shadow-sm'
             }`}
           >
             {f === 'all' ? 'הכל' : FREQUENCY_LABELS[f]}
@@ -175,7 +175,7 @@ export default function TasksPage() {
         ))}
       </div>
 
-      <div className="bg-white rounded-xl border border-[var(--border)] overflow-hidden">
+      <div className="app-card overflow-hidden">
         {loading ? (
           <p className="p-5 text-sm text-[var(--muted)]">טוען...</p>
         ) : filtered.length === 0 ? (

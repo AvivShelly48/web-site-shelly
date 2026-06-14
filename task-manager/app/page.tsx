@@ -30,7 +30,7 @@ export default function DashboardPage() {
         <StatCard label="ממתינות" value={pending} accent="text-gray-600" />
       </div>
 
-      <div className="bg-white rounded-xl border border-[var(--border)] p-5">
+      <div className="app-card p-5">
         <div className="flex items-center justify-between mb-2">
           <h2 className="font-semibold">התקדמות כללית</h2>
           <span className="text-sm text-[var(--muted)]">{Math.round(progressPct)}%</span>
@@ -38,7 +38,7 @@ export default function DashboardPage() {
         <ProgressBar value={progressPct} />
       </div>
 
-      <div className="bg-white rounded-xl border border-[var(--border)] p-5">
+      <div className="app-card p-5">
         <h2 className="font-semibold mb-4">התקדמות לפי עובד</h2>
         <div className="space-y-4">
           {employees.map((employee) => {
@@ -62,7 +62,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-[var(--border)] p-5">
+      <div className="app-card p-5">
         <h2 className="font-semibold mb-4">משימות שטרם הושלמו (יעד עד היום)</h2>
         {dueToday.length === 0 ? (
           <p className="text-[var(--muted)] text-sm">אין משימות באיחור - כל הכבוד!</p>
@@ -92,7 +92,7 @@ export default function DashboardPage() {
 
 function StatCard({ label, value, accent }: { label: string; value: number; accent?: string }) {
   return (
-    <div className="bg-white rounded-xl border border-[var(--border)] p-5">
+    <div className="app-card p-5">
       <p className="text-sm text-[var(--muted)]">{label}</p>
       <p className={`text-3xl font-bold mt-2 ${accent ?? ''}`}>{value}</p>
     </div>

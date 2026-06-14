@@ -66,7 +66,7 @@ export default function ReportsPage() {
         <p className="text-[var(--muted)] mt-1">הפקת דוח התקדמות ושליחתו לעובדים בוואטסאפ או באימייל</p>
       </div>
 
-      <div className="bg-white rounded-xl border border-[var(--border)] p-5 grid md:grid-cols-2 gap-4">
+      <div className="app-card p-5 grid md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium mb-1">סוג דוח</label>
           <select
@@ -101,7 +101,7 @@ export default function ReportsPage() {
           <button
             disabled={busy}
             onClick={generateWhatsapp}
-            className="flex items-center gap-1.5 bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 disabled:opacity-50"
+            className="flex items-center gap-1.5 bg-green-600 text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:opacity-90 disabled:opacity-50"
           >
             <MessageCircle size={16} />
             הכנת דוח לוואטסאפ
@@ -109,7 +109,7 @@ export default function ReportsPage() {
           <button
             disabled={busy}
             onClick={sendEmail}
-            className="flex items-center gap-1.5 bg-[var(--brand)] text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 disabled:opacity-50"
+            className="flex items-center gap-1.5 bg-[var(--brand)] text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:opacity-90 disabled:opacity-50"
           >
             <Mail size={16} />
             שליחת דוח באימייל
@@ -118,14 +118,14 @@ export default function ReportsPage() {
       </div>
 
       {report && (
-        <div className="bg-white rounded-xl border border-[var(--border)] p-5">
+        <div className="app-card p-5">
           <h2 className="font-semibold mb-3">תצוגה מקדימה של הדוח</h2>
           <pre className="whitespace-pre-wrap text-sm bg-[var(--bg)] rounded-lg p-4">{report}</pre>
         </div>
       )}
 
       {whatsappLinks.length > 0 && (
-        <div className="bg-white rounded-xl border border-[var(--border)] p-5">
+        <div className="app-card p-5">
           <h2 className="font-semibold mb-3">שליחה בוואטסאפ</h2>
           <p className="text-sm text-[var(--muted)] mb-3">לחצו על שם העובד כדי לפתוח את וואטסאפ עם הדוח מוכן לשליחה.</p>
           <div className="flex flex-wrap gap-2">
@@ -146,7 +146,7 @@ export default function ReportsPage() {
       )}
 
       {emailStatus && (
-        <div className="bg-white rounded-xl border border-[var(--border)] p-5">
+        <div className="app-card p-5">
           <h2 className="font-semibold mb-2">סטטוס שליחת אימייל</h2>
           <p className="text-sm text-[var(--muted)]">{emailStatus}</p>
         </div>

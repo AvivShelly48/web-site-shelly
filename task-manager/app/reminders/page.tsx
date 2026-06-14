@@ -66,7 +66,7 @@ export default function RemindersPage() {
         {reminders.length > 0 && (
           <button
             onClick={sendAll}
-            className="flex items-center gap-1.5 bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90"
+            className="flex items-center gap-1.5 bg-green-600 text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:opacity-90"
           >
             <Send size={16} />
             שליחה לכל העובדים
@@ -79,8 +79,8 @@ export default function RemindersPage() {
           <button
             key={s}
             onClick={() => setScope(s)}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium ${
-              scope === s ? 'bg-[var(--brand)] text-white' : 'bg-white border border-[var(--border)] text-[var(--muted)]'
+            className={`px-3.5 py-2 rounded-xl text-sm font-medium ${
+              scope === s ? 'bg-[var(--brand)] text-white' : 'bg-white text-[var(--muted)] shadow-sm'
             }`}
           >
             {SCOPE_LABELS[s]}
@@ -97,13 +97,13 @@ export default function RemindersPage() {
       {loading ? (
         <p className="text-sm text-[var(--muted)]">טוען...</p>
       ) : reminders.length === 0 ? (
-        <div className="bg-white rounded-xl border border-[var(--border)] p-8 text-center">
+        <div className="app-card p-8 text-center">
           <p className="text-[var(--muted)]">אין משימות פתוחות {SCOPE_LABELS[scope]} — אין צורך בתזכורות. 🎉</p>
         </div>
       ) : (
         <div className="grid md:grid-cols-2 gap-4">
           {reminders.map((reminder) => (
-            <div key={reminder.employee.id} className="bg-white rounded-xl border border-[var(--border)] p-5">
+            <div key={reminder.employee.id} className="app-card p-5">
               <div className="flex items-center justify-between mb-3">
                 <div>
                   <h2 className="font-semibold">{reminder.employee.name}</h2>
@@ -137,7 +137,7 @@ export default function RemindersPage() {
                     href={reminder.whatsappUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 bg-green-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:opacity-90"
+                    className="flex items-center gap-1.5 bg-green-600 text-white px-3 py-2.5 rounded-xl text-sm font-medium hover:opacity-90"
                   >
                     <MessageCircle size={15} />
                     שליחת תזכורת
@@ -145,7 +145,7 @@ export default function RemindersPage() {
                 )}
                 <button
                   onClick={() => copyMessage(reminder)}
-                  className="flex items-center gap-1.5 border border-[var(--border)] text-[var(--muted)] px-3 py-2 rounded-lg text-sm font-medium hover:bg-[var(--bg)]"
+                  className="flex items-center gap-1.5 border border-[var(--border)] text-[var(--muted)] px-3 py-2.5 rounded-xl text-sm font-medium hover:bg-[var(--bg)]"
                 >
                   <Copy size={15} />
                   {copiedId === reminder.employee.id ? 'הועתק!' : 'העתקת הודעה'}

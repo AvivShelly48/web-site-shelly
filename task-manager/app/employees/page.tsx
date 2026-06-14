@@ -50,7 +50,7 @@ export default function EmployeesPage() {
         </div>
         <button
           onClick={() => setShowForm((v) => !v)}
-          className="flex items-center gap-1.5 bg-[var(--brand)] text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90"
+          className="flex items-center gap-1.5 bg-[var(--brand)] text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:opacity-90"
         >
           <Plus size={16} />
           עובד חדש
@@ -58,7 +58,7 @@ export default function EmployeesPage() {
       </div>
 
       {showForm && (
-        <form onSubmit={addEmployee} className="bg-white rounded-xl border border-[var(--border)] p-5 grid md:grid-cols-3 gap-4">
+        <form onSubmit={addEmployee} className="app-card p-5 grid md:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium mb-1">שם מלא</label>
             <input
@@ -89,14 +89,14 @@ export default function EmployeesPage() {
             />
           </div>
           <div className="md:col-span-3 flex justify-end">
-            <button type="submit" className="bg-[var(--brand)] text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90">
+            <button type="submit" className="bg-[var(--brand)] text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:opacity-90">
               הוספת עובד
             </button>
           </div>
         </form>
       )}
 
-      <div className="bg-white rounded-xl border border-[var(--border)] overflow-hidden">
+      <div className="app-card overflow-hidden">
         {loading ? (
           <p className="p-5 text-sm text-[var(--muted)]">טוען...</p>
         ) : employees.length === 0 ? (
